@@ -1,0 +1,9 @@
+Flask
+Werkzeug
+Jinja2
+
+Flask-Assets
+
+python-memcached
+sqlalchemy
+psycopg2

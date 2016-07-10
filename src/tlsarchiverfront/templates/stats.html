@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+TLS Archiver &bull; Database status
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1>Database status</h1>
+
+    <p class="text-justify">
+        Here are some stats about the Archiver database. Note that when
+        scanning a host, the Archiver tries every IP associated with the
+        domain, in case one of them returns a different certificate. Then,
+        all the certificates returned, including the intermediate
+        certificates, are saved.
+    </p>
+
+    <div class="flex-horizontal">
+        <div class="stats-block">
+            <div class="stats-figure">{{ stats.total_certs }}</div>
+            <div class="stats-label">Total certificates</div>
+        </div>
+
+        <div class="stats-block">
+            <div class="stats-figure">{{ stats.total_hosts }}</div>
+            <div class="stats-label">Total hostnames</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

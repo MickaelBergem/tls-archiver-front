@@ -1,0 +1,51 @@
+html, body {
+    height: 100%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+  width: 100%;
+  height: 60px;
+  margin-top: 60px;
+  background-color: #f5f5f5;
+}
+
+body > .container {
+  padding: 30px 15px 0;
+  flex: 1;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.flex-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* Stats */
+.stats-block {
+    display: inline-block;
+    padding: 2em;
+}
+
+.stats-figure {
+    font-size: 400%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.stats-label {
+    text-align: center;
+}
