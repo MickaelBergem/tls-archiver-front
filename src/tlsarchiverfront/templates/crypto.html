@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+TLS Archiver &bull; Cryptography usage stats
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h1>Protocols &amp; Ciphersuites used</h1>
+
+    <p class="text-justify">
+        When connecting to a server, the Archiver negociates a protocol and a cipher to use in the TLS connection.
+        Generally, the best available cipher will be selected: some stats on the negociated ciphers are available here.
+    </p>
+
+    <h2>Protocols</h2>
+
+    <table class="table table-responsive">
+        <tr>
+            <th>Protocol</th>
+            <th>Total usage</th>
+            <!-- <th>Per host usage</th> -->
+        </tr>
+        {% for proto in protocols %}
+        <tr>
+            <th>{{ proto.name }}</th>
+            <td>{{ proto.total_usage }} ({{ '%.1f' % proto.total_usage_pc }}%)</td>
+            <!-- <td>{{ proto.perhost_usage }} ({{ proto.perhost_usage_pc }}%)</td> -->
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Ciphersuites</h2>
+
+    <table class="table table-responsive">
+        <tr>
+            <th>Ciphersuite</th>
+            <th>Total usage</th>
+            <!-- <th>Per host usage</th> -->
+        </tr>
+        {% for cipher in ciphersuites %}
+        <tr>
+            <th>{{ cipher.name }}</th>
+            <td>{{ cipher.total_usage }} ({{ '%.1f' % cipher.total_usage_pc }}%)</td>
+            <!-- <td>{{ cipher.perhost_usage }} ({{ cipher.perhost_usage_pc }}%)</td> -->
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

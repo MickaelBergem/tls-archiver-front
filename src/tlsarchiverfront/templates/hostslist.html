@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+TLS Archiver &bull; Hosts list
+{% endblock %}
+
+{% block body %}
+<h2>Currently processed hosts ({{ hosts.processing|length }})</h2>
+
+<table class="table table-hover">
+<thead>
+    <tr>
+        <th>Domain name</th>
+        <th>Start time</th>
+    </tr>
+</thead>
+<tbody>
+    {% for host in hosts.processing %}
+        {% if host.finished == 1 %}
+        <tr class="bg-success">
+        {% else %}
+        <tr>
+        {% endif %}
+            <th>{{ host.host }}</th>
+            <td>{% if host.started_on %}{{ host.started_on.strftime('%B %d at %H:%M:%S') }}{% endif %}</td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<h2>Other hosts</h2>
+<table class="table table-hover">
+<thead>
+    <tr>
+        <th>Domain name</th>
+        <th>Start time</th>
+        <th>State</th>
+    </tr>
+</thead>
+<tbody>
+    {% for host in hosts.others %}
+        {% if host.finished == 1 %}
+        <tr class="bg-success">
+        {% else %}
+        <tr>
+        {% endif %}
+            <th>{{ host.host }}</th>
+            <td>{% if host.started_on %}{{ host.started_on.strftime('%B %d at %H:%M:%S') }}{% endif %}</td>
+            <td>
+                {% if host.finished == 1 %}
+                    Finished
+                {% elif host.started_on %}
+                    Processing...
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% if page > 0 %}<a href="?page={{ page - 1 }}" class="btn btn-default pull-left">Page précédente</a>{% endif %}
+<a href="?page={{ page + 1 }}" class="btn btn-default pull-right">Page suivante</a>
+{% endblock %}
